@@ -144,4 +144,4 @@ while True:
         print("USDC:\t" + str(usdc) + "\t\t" +  obter_hora() + Fore.LIGHTYELLOW_EX +"\tEstável!"+Style.RESET_ALL + "  " +"-%")
 
     print("======================================================================")
-    time.sleep(20)
+    time.sleep(60)
