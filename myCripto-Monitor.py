@@ -2,12 +2,12 @@ import requests
 import json
 import time
 import locale
+import colorama
 from datetime import datetime
 from pyfiglet import figlet_format
 from colorama import Fore, Back, Style
-import colorama
-colorama.init(autoreset=True)
 
+colorama.init(autoreset=True)
 locale.setlocale(locale.LC_MONETARY, "pt_BR.UTF-8")
 
 def logo():
@@ -80,7 +80,6 @@ while True:
     list_usdc.append(usdc)
     usdc = locale.currency(usdc, grouping=True)
     
-
     # Monitoramento BTC
     if list_btc[-1] > list_btc[-2]:
         if list_btc[-2] == 1.00:
@@ -129,7 +128,6 @@ while True:
         print("PAXG:\t" + str(paxg) + "\t" +  obter_hora() + Fore.RED +"\tCaindo!"+Style.RESET_ALL + "  " +response)
     else:
         print("PAXG:\t" + str(paxg) + "\t" +  obter_hora() + Fore.LIGHTYELLOW_EX +"\tEstável!"+Style.RESET_ALL + "  " +"-%")
-
         
     # Monitoramento USDC
     if list_usdc[-1] > list_usdc[-2]:
