@@ -40,3 +40,14 @@ pip install rich
 
 3. A partir desse momento o monitoramento se inicia.
 
+
+## Métodos desenvolvidos
+### logo():
+Responsável por printar no terminal a logo do MB estilizada.
+
+```python
+def logo():
+    print("==============================================================================")
+    print(figlet_format("    Mercado Bitcoin ", font="standard"))
+    print("==============================================================================")
+```
