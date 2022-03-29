@@ -1,4 +1,4 @@
-[![Supported Python Versions](https://img.shields.io/pypi/pyversions/rich/10.11.0)
+![Supported Python Versions](https://img.shields.io/pypi/pyversions/rich/10.11.0)
 
 # myCrypto
 Aplicação de monitoração de valores de criptos através da API do Mercado Bitcoin.
