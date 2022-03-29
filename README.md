@@ -8,3 +8,22 @@ Versão [1]:
 Versão [2]:
 
 ![Captura de tela 2022-03-29 002637](https://user-images.githubusercontent.com/40063504/160527295-291ce2dd-4289-400f-b83e-729a40f9ccef.png)
+
+## Requirements
+
+1. pip install request
+2. pip install pyfiglet
+3. pip install colorama
+4. pip install rich
+
+## Exemplo
+
+1. Clone o repositório para sua máquina
+
+   ``
+   git clone https://github.com/vmeazevedo/myCrypto_MercadoBitcoin
+   ``
+2. Execute o arquivo python ``myCripto-Monitor_v2.py``.
+
+3. A partir desse momento o monitoramento se inicia.
+
