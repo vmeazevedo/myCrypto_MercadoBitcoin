@@ -11,7 +11,7 @@ Versão [2]:
 
 ## Requirements
 
-1. pip install request
+1. pip install requests
 2. pip install pyfiglet
 3. pip install colorama
 4. pip install rich
