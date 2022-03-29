@@ -1,18 +1,14 @@
 import json
 import locale
 import time
-from datetime import datetime
-
-import colorama
 import requests
+from datetime import datetime
 from pyfiglet import figlet_format
 from rich import print
 from rich.console import Console
-from rich.layout import Layout
 from rich.panel import Panel
 from rich.table import Table
 
-colorama.init(autoreset=True)
 locale.setlocale(locale.LC_MONETARY, "pt_BR.UTF-8")
 
 
