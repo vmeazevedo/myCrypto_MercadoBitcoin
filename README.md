@@ -13,12 +13,14 @@ Versão [2]:
 
 ## Requirements
 
-1. pip install requests
-2. pip install pyfiglet
-3. pip install colorama
-4. pip install rich
+```sh
+pip install requests
+pip install pyfiglet
+pip install colorama
+pip install rich
+```
 
-## Exemplo
+## Exemplo de utilização
 
 1. Clone o repositório para sua máquina
 
