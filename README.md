@@ -1,3 +1,5 @@
+![logo](https://user-images.githubusercontent.com/40063504/160647493-057abc2c-12a3-4b25-91d5-20484834bd85.svg)
+
 # myCrypto_MercadoBitcoin
 Aplicação de monitoração de valores de criptos através da API do Mercado Bitcoin.
    
@@ -6,8 +8,6 @@ Aplicação de monitoração de valores de criptos através da API do Mercado Bi
 ![Star](https://img.shields.io/github/stars/vmeazevedo/myCrypto_MercadoBitcoin?style=social)
 ![Fork](https://img.shields.io/github/forks/vmeazevedo/myCrypto_MercadoBitcoin?label=Fork&style=social)
    
-![logo](https://user-images.githubusercontent.com/40063504/160647493-057abc2c-12a3-4b25-91d5-20484834bd85.svg)
-
 
 #### Versão inicial:
 
