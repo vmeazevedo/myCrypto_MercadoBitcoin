@@ -23,10 +23,7 @@ Aplicação de monitoração de valores de criptos através da API do Mercado Bi
 ## Requirements
 
 ```sh
-pip install requests
-pip install pyfiglet
-pip install colorama
-pip install rich
+pip install -r requirements.txt
 ```
 
 ## Exemplo de utilização
