@@ -1,4 +1,4 @@
-![Supported Python Versions](https://img.shields.io/pypi/pyversions/rich/10.11.0) [![Twitter Follow](https://img.shields.io/twitter/follow/vmeazevedo.svg?style=social)](https://twitter.com/vmeazevedo) [![LinkedIn](https://img.shields.io/badge/blog-rich%20news-yellowgreen)](https://www.linkedin.com/in/vin%C3%ADcius-azevedo-45180ab2/)
+![Supported Python Versions](https://img.shields.io/pypi/pyversions/rich/10.11.0) [![Twitter Follow](https://img.shields.io/twitter/follow/vmeazevedo.svg?style=social)](https://twitter.com/vmeazevedo) [![LinkedIn](https://img.shields.io/badge/Vinícius-Azevedo%20news-yellowgreen)](https://www.linkedin.com/in/vin%C3%ADcius-azevedo-45180ab2/)
 
 # myCrypto
 Aplicação de monitoração de valores de criptos através da API do Mercado Bitcoin.
