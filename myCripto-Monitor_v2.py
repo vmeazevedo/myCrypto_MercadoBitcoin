@@ -16,196 +16,120 @@ colorama.init(autoreset=True)
 locale.setlocale(locale.LC_MONETARY, "pt_BR.UTF-8")
 
 
-def logo(titulo):
+def logo(titulo: str = "") -> None:
     print("=" * 80)
     print(figlet_format(text=titulo, font="standard", justify="center"))
     print("=" * 80)
 
 
-def obter_hora():
+def obter_hora() -> str:
     data_e_hora_atuais = datetime.now()
-    data_e_hora_em_texto = data_e_hora_atuais.strftime("%d/%m/%Y %H:%M:%S")
-    return data_e_hora_em_texto
+
+    return data_e_hora_atuais.strftime("%d/%m/%Y %H:%M:%S")
 
 
-def buscar_dados(coin):
+def buscar_dados(coin: str) -> float:
     request = requests.get(f"https://www.mercadobitcoin.net/api/{coin}/ticker")
     payload = json.loads(request.content)
     coin = payload['ticker']['last']
+
     return float(coin)
 
 
-def calc_porc(anterior, nova):
-    anterior = anterior
-    nova = nova
-
-    if anterior < nova:
-        x = (nova*100.00) / anterior
-        x = 100.00 - x
-        x = str(x)
-        x = x.replace('-', '')
-        x = float(x)
-        x = round(x, 2)
-        x = ("+" + str(x))
-        return x
-
-    elif anterior > nova:
-        x = (nova*100.00) / anterior
-        x = 100.00 - x
-        x = str(x)
-        x = float(x)
-        x = round(x, 2)
-        x = ("-" + str(x))
-        return x
-
+def calcula_percentual_de_alta_ou_baixa(valor_novo: float = 0, valor_antigo: float = 0) -> float:
+    if valor_antigo == 0:
+        return 0
+    elif valor_novo == 0:
+        return 100
     else:
-        x = ("-%")
-        return x
+        return (1 - (valor_antigo / valor_novo))
+
+
+def formata_em_valor_moeda(valor: str) -> str:
+    return locale.currency(float(valor), grouping=True)
+
+
+def formata_em_valor_porcentagem(valor: float) -> str:
+    return "{:.3%}".format(valor)
+
+
+def cria_tabela_de_dados(titulo: str = "") -> Table:
+    tabela = Table(title=titulo)
+    tabela.add_column("Criptomoeda", justify="center", no_wrap=True)
+    tabela.add_column("Valor", justify="center")
+    tabela.add_column("Data/Hora", justify="center")
+    tabela.add_column("Status", justify="center")
+    tabela.add_column("Porcentagem", justify="center")
+
+    return tabela
 
 
 logo("Mercado Bitcoin")
-list_btc = [1.00]
-list_eth = [1.00]
-list_xrp = [1.00]
-list_paxg = [1.00]
-list_usdc = [1.00]
 
 print(Panel.fit("Desenvolvido por: Vinícius Azevedo. \nObrigado por testar a nova versão!", ))
 
+# Lista de moedas a serem cotadas:
+ticker_para_cotacao = {
+    "BTC": {"nome": "BITCOIN", "antigo": 0, "novo": 0},
+    "ETH": {"nome": "ETHEREUM", "antigo": 0, "novo": 0},
+    "XRP": {"nome": "XRP", "antigo": 0, "novo": 0},
+    "PAXG": {"nome": "PAXG", "antigo": 0, "novo": 0},
+    "USDC": {"nome": "USDC", "antigo": 0, "novo": 0},
+}
+
+# Tempo em segundos para nova cotacao
+tempo_para_nova_cotacao = 60
+
 while True:
-    # Realizando as requisições
-    btc = float(buscar_dados("BTC"))
-    eth = float(buscar_dados("ETH"))
-    xrp = float(buscar_dados("XRP"))
-    paxg = float(buscar_dados("PAXG"))
-    usdc = float(buscar_dados("USDC"))
-
-    # Armazenando os dados em listas para comparações
-    list_btc.append(btc)
-    btc = locale.currency(btc, grouping=True)
-    list_eth.append(eth)
-    eth = locale.currency(eth, grouping=True)
-    list_xrp.append(xrp)
-    xrp = locale.currency(xrp, grouping=True)
-    list_paxg.append(paxg)
-    paxg = locale.currency(paxg, grouping=True)
-    list_usdc.append(usdc)
-    usdc = locale.currency(usdc, grouping=True)
-
-    table = Table(title="")
-    table.add_column("Criptomoeda", justify="center", no_wrap=True)
-    table.add_column("Valor", justify="center")
-    table.add_column("Data/Hora", justify="center")
-    table.add_column("Status", justify="center")
-    table.add_column("Porcentagem", justify="center")
-
     data_hora = obter_hora()
+    tabela = cria_tabela_de_dados()
 
-    # Monitoramento BTC
-    if list_btc[-1] > list_btc[-2]:
-        if list_btc[-2] == 1.00:
-            response = "Calculando.."
-        else:
-            response = str(calc_porc(list_btc[-2], list_btc[-1]))
-        table.add_row(
-            "BITCOIN",
-            str(btc),
-            data_hora,
-            "⬆",
-            response,
-            style="green"
+    for ticker in ticker_para_cotacao:
+        ticker_para_cotacao[ticker]['novo'] = round(buscar_dados(ticker), 3)
+
+        nome_ticker = ticker_para_cotacao[ticker]['nome']
+        valor_novo = ticker_para_cotacao[ticker]['novo']
+        valor_antigo = ticker_para_cotacao[ticker]['antigo']
+
+        valor_em_reais = locale.currency(
+            valor_novo,
+            grouping=True
         )
-        console = Console()
 
-    elif list_btc[-1] < list_btc[-2]:
-        response = str(calc_porc(list_btc[-2], list_btc[-1]))
-        table.add_row("BITCOIN", str(btc), data_hora,
-                      "⬇", response, style="red")
-        console = Console()
+        porcentagem = calcula_percentual_de_alta_ou_baixa(
+            valor_novo,
+            valor_antigo
+        )
 
-    else:
-        table.add_row("BITCOIN", str(btc), data_hora, "=", "%", style="yellow")
-        console = Console()
+        if valor_antigo == 0:
+            status = "⧖"
+            estilo = "blue"
 
-    # Monitoramento ETH
-    if list_eth[-1] > list_eth[-2]:
-        if list_eth[-2] == 1.00:
-            response = "Calculando.."
+        elif porcentagem > 0:
+            status = "⬆"
+            estilo = "green"
+
+        elif porcentagem < 0:
+            status = "⬇"
+            estilo = "red"
+
         else:
-            response = str(calc_porc(list_eth[-2], list_eth[-1]))
-        table.add_row("ETHEREUM", str(eth), data_hora,
-                      "⬆", response, style="green")
-        console = Console()
+            status = "="
+            estilo = "yellow"
 
-    elif list_eth[-1] < list_eth[-2]:
-        response = str(calc_porc(list_eth[-2], list_eth[-1]))
-        table.add_row("ETHEREUM", str(eth), data_hora,
-                      "⬇", response, style="red")
-        console = Console()
+        tabela.add_row(
+            nome_ticker,
+            valor_em_reais,
+            data_hora,
+            status,
+            formata_em_valor_porcentagem(porcentagem),
+            style=estilo
+        )
 
-    else:
-        table.add_row("ETHEREUM", str(eth), data_hora,
-                      "=", "%", style="yellow")
-        console = Console()
+        ticker_para_cotacao[ticker]['antigo'] = ticker_para_cotacao[ticker]['novo']
 
-    # Monitoramento XRP
-    if list_xrp[-1] > list_xrp[-2]:
-        if list_xrp[-2] == 1.00:
-            response = "Calculando.."
-        else:
-            response = str(calc_porc(list_xrp[-2], list_xrp[-1]))
-        table.add_row("XRP", str(xrp), data_hora, "⬆", response, style="green")
-        console = Console()
+    console = Console()
+    console.print(tabela, justify="left")
 
-    elif list_xrp[-1] < list_xrp[-2]:
-        response = str(calc_porc(list_xrp[-2], list_xrp[-1]))
-        table.add_row("XRP", str(xrp), data_hora, "⬇", response, style="red")
-        console = Console()
-
-    else:
-        table.add_row("XRP", str(xrp), data_hora, "=", "%", style="yellow")
-        console = Console()
-
-    # Monitoramento PAXG
-    if list_paxg[-1] > list_paxg[-2]:
-        if list_paxg[-2] == 1.00:
-            response = "Calculando.."
-        else:
-            response = str(calc_porc(list_paxg[-2], list_paxg[-1]))
-        table.add_row("PAXG", str(paxg), data_hora,
-                      "⬆", response, style="green")
-        console = Console()
-
-    elif list_paxg[-1] < list_paxg[-2]:
-        response = str(calc_porc(list_paxg[-2], list_paxg[-1]))
-        table.add_row("PAXG", str(paxg), data_hora, "⬇", response, style="red")
-        console = Console()
-
-    else:
-        table.add_row("PAXG", str(paxg), data_hora, "=", "%", style="yellow")
-        console = Console()
-
-    # Monitoramento USDC
-    if list_usdc[-1] > list_usdc[-2]:
-        if list_usdc[-2] == 1.00:
-            response = "Calculando.."
-        else:
-            response = str(calc_porc(list_usdc[-2], list_usdc[-1]))
-        table.add_row("USDC", str(usdc), data_hora,
-                      "⬆", response, style="green")
-        console = Console()
-        console.print(table)
-
-    elif list_usdc[-1] < list_usdc[-2]:
-        response = str(calc_porc(list_usdc[-2], list_usdc[-1]))
-        table.add_row("USDC", str(usdc), data_hora, "⬇", response, style="red")
-        console = Console()
-        console.print(table)
-
-    else:
-        table.add_row("USDC", str(usdc), data_hora, "=", "%", style="yellow")
-        console = Console()
-        console.print(table)
-
-    print("==============================================================================")
-    time.sleep(60)
+    print("=" * 80)
+    time.sleep(tempo_para_nova_cotacao)
