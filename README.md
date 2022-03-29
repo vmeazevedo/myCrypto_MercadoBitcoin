@@ -8,17 +8,11 @@ Aplicação de monitoração de valores de criptos através da API do Mercado Bi
 ![Star](https://img.shields.io/github/stars/vmeazevedo/myCrypto_MercadoBitcoin?style=social)
 ![Fork](https://img.shields.io/github/forks/vmeazevedo/myCrypto_MercadoBitcoin?label=Fork&style=social)
    
-   
 
-### Versão inicial:
-- Consumo da API do Mercado Bitcoin trazendo dados de valor, status de alta e queda e taxa de variação do status em porcentagem.
+### Terminal:
 
-![Funções](https://user-images.githubusercontent.com/40063504/160224630-1390f561-cb05-4982-9b85-4e15bac439bd.jpg)
+![terminal](https://user-images.githubusercontent.com/40063504/160672257-5d8ddb98-d71e-40e7-8847-eaa03aba7149.png)
 
-### Versão estilizada:
-- Substituição da biblioteca colorama pela biblioteca rich.
-
-![Funções](https://user-images.githubusercontent.com/40063504/160527295-291ce2dd-4289-400f-b83e-729a40f9ccef.png)
 
 ## Requirements
 
