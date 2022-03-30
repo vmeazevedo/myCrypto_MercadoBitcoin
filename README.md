@@ -10,7 +10,7 @@ Aplicação de monitoração de valores de criptos através da API do Mercado Bi
    
 ## Apoie esse projeto! 💵💵
 Olá!
-Você pode transferir de qualquer banco para minha chave Pix Itaú:865875c7-c1cc-4254-8585-7c1616dfbc59
+Você pode transferir de qualquer banco para minha chave Pix Itaú: **865875c7-c1cc-4254-8585-7c1616dfbc59**
 
 
 ### Terminal:
