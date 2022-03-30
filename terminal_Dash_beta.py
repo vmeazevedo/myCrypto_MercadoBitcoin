@@ -15,6 +15,7 @@ def buscar_dados(coin):
 list_btc = []
 list_eth = []
 list_xrp = []
+cnt=0
 
 while True:
     # Realizando as requisições
@@ -26,6 +27,13 @@ while True:
     list_btc.append(btc)
     list_eth.append(eth)
     list_xrp.append(xrp)
+
+    # Contador para plotar no gráfico os ultimos 50 registros
+    cnt=cnt+1
+    if(cnt>80):
+        list_btc.pop(0)
+        list_eth.pop(0)
+        list_xrp.pop(0)
    
     valor = list_btc
     valor2 = list_eth
@@ -34,7 +42,11 @@ while True:
    
     l = 1000
     x = range(1, l + 1)
-    frames = 50
+    frames = 30
+    
+    plt.title("Streaming Data")
+    plt.clc()
+
     for i in range(frames):
         plt.clt()
         plt.cld()
@@ -42,39 +54,41 @@ while True:
         
         #Grafico BTC
         plt.subplot(1,1)
-        plt.scatter(valor, color = "red", marker="dot", label="Bitcoin")
+        plt.scatter(x,valor, color = "red", marker="dot", label="Bitcoin")
         plt.frame(True)
         plt.grid(True)
         plt.plot_size(40, 20)
         plt.xlim(-10, +100)
         plt.ylim(valor[-1]-1000, valor[-1]+1000)
         plt.xlabel('Bitcoin')
-        # plt.clc()
+        plt.clc()
     
         # Grafico ETH
         # plt.title("Ethereum")
         plt.subplot(1,2)
-        plt.plot(valor2, color = "purple", marker="dot",label="Ethereum")
+        plt.plot(x,valor2, color = "purple", marker="dot",label="Ethereum")
         plt.frame(True)
         plt.grid(True)
         plt.plot_size(40, 20)
         plt.xlim(-10, +100)
         plt.ylim(valor2[-1]-1000, valor2[-1]+1000)
         plt.xlabel('Ethereum')
-        # plt.clc()
+        plt.clc()
 
         # Grafico XRP
         plt.subplot(1,3)
-        plt.plot(valor3, color="green", marker="dot",label="XRP")
+        plt.plot(x,valor3, color="green", marker="dot",label="XRP")
         plt.frame(True)
         plt.grid(True)
         plt.plot_size(40, 20)
         plt.xlim(-10, +100)
         plt.ylim(valor3[-1]-2, valor3[-1]+5)
         plt.xlabel('XRP')
-        # plt.clc()
+        plt.clc()
 
+    plt.sleep(0.02)
     plt.show()
+    # print(valor,valor2,valor3)
     print("=" * 125 +"\n")
-    time.sleep(2)
+    # time.sleep(2)
     
