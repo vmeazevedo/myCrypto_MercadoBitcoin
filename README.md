@@ -14,6 +14,11 @@ Aplicação de monitoração de valores de criptos através da API do Mercado Bi
 ![terminal](https://user-images.githubusercontent.com/40063504/160672257-5d8ddb98-d71e-40e7-8847-eaa03aba7149.png)
 
 
+### Terminal Dash (Beta):
+https://user-images.githubusercontent.com/40063504/160843365-72664101-06c9-432c-af04-a5f1ce59e956.mp4
+
+
+
 ## Requirements
 
 ```sh
