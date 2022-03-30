@@ -8,6 +8,10 @@ Aplicação de monitoração de valores de criptos através da API do Mercado Bi
 ![Star](https://img.shields.io/github/stars/vmeazevedo/myCrypto_MercadoBitcoin?style=social)
 ![Fork](https://img.shields.io/github/forks/vmeazevedo/myCrypto_MercadoBitcoin?label=Fork&style=social)
    
+## Apoie esse projeto! 💵💵
+Olá!
+Você pode transferir de qualquer banco para minha chave Pix Itaú:865875c7-c1cc-4254-8585-7c1616dfbc59
+
 
 ### Terminal:
 
