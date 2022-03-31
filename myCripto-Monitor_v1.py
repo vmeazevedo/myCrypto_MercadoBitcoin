@@ -5,7 +5,7 @@ import locale
 import colorama
 from datetime import datetime
 from pyfiglet import figlet_format
-from colorama import Fore, Back, Style
+from colorama import Fore, Style
 
 colorama.init(autoreset=True)
 locale.setlocale(locale.LC_MONETARY, "pt_BR.UTF-8")
