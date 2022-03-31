@@ -9,16 +9,18 @@ from utils.logo import logo
 from utils.porcentagem import calc_porc
 from utils.requisição import buscar_dados
 
+# Configurando o sistema para R$
 locale.setlocale(locale.LC_MONETARY, "pt_BR.UTF-8")
 
 logo("Mercado Bitcoin")
+print(Panel.fit("Desenvolvido por: Vinícius Azevedo" ))
+
+# Setando valores base para as lista
 list_btc = [1.00]
 list_eth = [1.00]
 list_xrp = [1.00]
 list_paxg = [1.00]
 list_usdc = [1.00]
-
-print(Panel.fit("Desenvolvido por: Vinícius Azevedo" ))
 
 while True:
     # Realizando as requisições
@@ -40,6 +42,7 @@ while True:
     list_usdc.append(usdc)
     usdc = locale.currency(usdc, grouping=True)
 
+    # Cria a tabela para exibição dos dados
     table = Table(title="")
     table.add_column("Criptomoeda", justify="center", no_wrap=True)
     table.add_column("Valor", justify="center")
@@ -55,20 +58,12 @@ while True:
             response = "Calculando.."
         else:
             response = str(calc_porc(list_btc[-2], list_btc[-1]))
-        table.add_row(
-            "BITCOIN",
-            str(btc),
-            data_hora,
-            "⬆",
-            response,
-            style="green"
-        )
+        table.add_row("BITCOIN",str(btc),data_hora,"⬆",response,style="green")
         console = Console()
 
     elif list_btc[-1] < list_btc[-2]:
         response = str(calc_porc(list_btc[-2], list_btc[-1]))
-        table.add_row("BITCOIN", str(btc), data_hora,
-                      "⬇", response, style="red")
+        table.add_row("BITCOIN", str(btc), data_hora,"⬇", response, style="red")
         console = Console()
 
     else:
@@ -81,19 +76,16 @@ while True:
             response = "Calculando.."
         else:
             response = str(calc_porc(list_eth[-2], list_eth[-1]))
-        table.add_row("ETHEREUM", str(eth), data_hora,
-                      "⬆", response, style="green")
+        table.add_row("ETHEREUM", str(eth), data_hora,"⬆", response, style="green")
         console = Console()
 
     elif list_eth[-1] < list_eth[-2]:
         response = str(calc_porc(list_eth[-2], list_eth[-1]))
-        table.add_row("ETHEREUM", str(eth), data_hora,
-                      "⬇", response, style="red")
+        table.add_row("ETHEREUM", str(eth), data_hora,"⬇", response, style="red")
         console = Console()
 
     else:
-        table.add_row("ETHEREUM", str(eth), data_hora,
-                      "=", "%", style="yellow")
+        table.add_row("ETHEREUM", str(eth), data_hora,"=", "%", style="yellow")
         console = Console()
 
     # Monitoramento XRP
@@ -120,8 +112,7 @@ while True:
             response = "Calculando.."
         else:
             response = str(calc_porc(list_paxg[-2], list_paxg[-1]))
-        table.add_row("PAXG", str(paxg), data_hora,
-                      "⬆", response, style="green")
+        table.add_row("PAXG", str(paxg), data_hora,"⬆", response, style="green")
         console = Console()
 
     elif list_paxg[-1] < list_paxg[-2]:
@@ -139,8 +130,7 @@ while True:
             response = "Calculando.."
         else:
             response = str(calc_porc(list_usdc[-2], list_usdc[-1]))
-        table.add_row("USDC", str(usdc), data_hora,
-                      "⬆", response, style="green")
+        table.add_row("USDC", str(usdc), data_hora,"⬆", response, style="green")
         console = Console()
         console.print(table)
 
