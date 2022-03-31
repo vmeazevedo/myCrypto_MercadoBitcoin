@@ -54,10 +54,7 @@ while True:
    
     l = 1000
     x = range(1, l + 1)
-    frames = 30
-    
-    plt.title("Streaming Data")
-    plt.clc()
+    frames = 20
 
     for i in range(frames):
         plt.clt()
