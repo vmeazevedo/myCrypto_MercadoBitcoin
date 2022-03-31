@@ -18,11 +18,6 @@ Você pode realizar doações de qualquer banco para minha chave Pix Itaú: **86
 ![terminal](https://user-images.githubusercontent.com/40063504/160672257-5d8ddb98-d71e-40e7-8847-eaa03aba7149.png)
 
 
-### Terminal Dash (Beta):
-https://user-images.githubusercontent.com/40063504/160843365-72664101-06c9-432c-af04-a5f1ce59e956.mp4
-
-![terminal-dash](https://user-images.githubusercontent.com/40063504/160960953-90733fc7-7831-4518-aa0e-696a448ac44c.png)
-
 
 ## Requirements
 
@@ -37,7 +32,7 @@ pip install -r requirements.txt
    ``
    git clone https://github.com/vmeazevedo/myCrypto_MercadoBitcoin
    ``
-2. Execute o arquivo python ``myCripto-Monitor_v2.py``.
+2. Execute o arquivo python ``myCripto-Monitor.py``.
 
 3. A partir desse momento o monitoramento se inicia.
 
