@@ -7,7 +7,8 @@ from rich.table import Table
 from utils.horas import obter_hora
 from utils.logo import logo
 from utils.porcentagem import calc_porc
-from utils.requisição import buscar_dados
+from utils.requisição import loop
+
 
 # Configurando o sistema para R$
 locale.setlocale(locale.LC_MONETARY, "pt_BR.UTF-8")
@@ -21,24 +22,26 @@ list_eth = [1.00]
 list_xrp = [1.00]
 list_paxg = [1.00]
 list_usdc = [1.00]
-
+    
 while True:
-    # Realizando as requisições
-    btc = float(buscar_dados("BTC"))
-    eth = float(buscar_dados("ETH"))
-    xrp = float(buscar_dados("XRP"))
-    paxg = float(buscar_dados("PAXG"))
-    usdc = float(buscar_dados("USDC"))
-
-    # Armazenando os dados em listas para comparações
+    # Realizando as requisições e armazenando os dados em listas para comparações
+    btc = loop('btc')
     list_btc.append(btc)
     btc = locale.currency(btc, grouping=True)
+
+    eth = loop('eth')
     list_eth.append(eth)
     eth = locale.currency(eth, grouping=True)
+
+    xrp = loop('xrp')
     list_xrp.append(xrp)
     xrp = locale.currency(xrp, grouping=True)
+
+    paxg = loop('paxg')
     list_paxg.append(paxg)
     paxg = locale.currency(paxg, grouping=True)
+
+    usdc = loop('usdc')
     list_usdc.append(usdc)
     usdc = locale.currency(usdc, grouping=True)
 
