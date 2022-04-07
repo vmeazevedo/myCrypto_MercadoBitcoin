@@ -23,6 +23,7 @@ Bot de Telegram para monitoração de valores de criptos através da API do Merc
 
 [myBot_MercadoBitcoin](https://github.com/vmeazevedo/myBot_MercadoBitcoin)
 
+https://user-images.githubusercontent.com/40063504/162095912-4bfc39d5-4df2-4e2b-91e9-0a6734df84ef.mp4
 
 
 ## Requirements
