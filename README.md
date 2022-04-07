@@ -21,7 +21,7 @@ Você pode realizar doações de qualquer banco para minha chave Pix Itaú: **86
 <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white">
 Bot de Telegram para monitoração de valores de criptos através da API do Mercado Bitcoin.
 
-[myBot_MercadoBitcoin](https://github.com/vmeazevedo/myBot_MercadoBitcoin
+[myBot_MercadoBitcoin](https://github.com/vmeazevedo/myBot_MercadoBitcoin)
 
 
 
