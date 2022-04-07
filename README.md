@@ -13,9 +13,15 @@ Olá!
 Você pode realizar doações de qualquer banco para minha chave Pix Itaú: **865875c7-c1cc-4254-8585-7c1616dfbc59**
 
 
-### Terminal:
+## Terminal
 
 ![terminal](https://user-images.githubusercontent.com/40063504/160672257-5d8ddb98-d71e-40e7-8847-eaa03aba7149.png)
+
+## myBot - Telegram
+<img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white">
+Bot de Telegram para monitoração de valores de criptos através da API do Mercado Bitcoin.
+
+[myBot_MercadoBitcoin](https://github.com/vmeazevedo/myBot_MercadoBitcoin
 
 
 
