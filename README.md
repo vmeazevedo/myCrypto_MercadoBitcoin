@@ -1,7 +1,7 @@
 ![logo](https://user-images.githubusercontent.com/40063504/160647493-057abc2c-12a3-4b25-91d5-20484834bd85.svg)
 
 # myCrypto_MercadoBitcoin
-Aplicação de monitoração de valores de criptos através da API do Mercado Bitcoin.
+Aplicação de monitoramento de valores de criptos através da API do Mercado Bitcoin.
    
 ![Supported Python Versions](https://img.shields.io/pypi/pyversions/rich/10.11.0) [![Twitter Follow](https://img.shields.io/twitter/follow/vmeazevedo.svg?style=social)](https://twitter.com/vmeazevedo) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Vinícius_Azevedo%20-blue)](https://www.linkedin.com/in/vin%C3%ADcius-azevedo-45180ab2/)
 
