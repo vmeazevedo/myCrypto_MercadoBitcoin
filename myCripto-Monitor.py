@@ -2,12 +2,11 @@ from requests import get
 from json import loads
 from time import sleep
 from locale import LC_MONETARY, setlocale, currency
-import colorama
 from datetime import datetime
 from pyfiglet import figlet_format
-from colorama import Fore, Back, Style
+from colorama import Fore, Back, Style, init
 
-colorama.init(autoreset=True)
+init(autoreset=True)
 setlocale(LC_MONETARY, "pt_BR.UTF-8")
 
 def logo():
