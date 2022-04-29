@@ -1,19 +1,19 @@
-import requests
-import json
-import time
-import locale
+from requests import get
+from json import loads
+from time import sleep
+from locale import LC_MONETARY, setlocale, currency
 import colorama
 from datetime import datetime
 from pyfiglet import figlet_format
 from colorama import Fore, Back, Style
 
 colorama.init(autoreset=True)
-locale.setlocale(locale.LC_MONETARY, "pt_BR.UTF-8")
+setlocale(LC_MONETARY, "pt_BR.UTF-8")
 
 def logo():
-    print("======================================================================")
+    print("="*80)
     print(figlet_format("Mercado Bitcoin ", font="standard"))
-    print("======================================================================")
+    print("="*80)
 
 def obter_hora():
 	data_e_hora_atuais = datetime.now()
@@ -21,8 +21,8 @@ def obter_hora():
 	return data_e_hora_em_texto
 
 def buscar_dados(coin):
-    request = requests.get(f"https://www.mercadobitcoin.net/api/{coin}/ticker")
-    payload = json.loads(request.content)
+    request = get(f"https://www.mercadobitcoin.net/api/{coin}/ticker")
+    payload = loads(request.content)
     coin = payload['ticker']['last']
     return float(coin)
 
@@ -70,15 +70,15 @@ while True:
 
     # Armazenando os dados em listas para comparações
     list_btc.append(btc)
-    btc = locale.currency(btc, grouping=True)
+    btc = currency(btc, grouping=True)
     list_eth.append(eth)
-    eth = locale.currency(eth, grouping=True)
+    eth = currency(eth, grouping=True)
     list_xrp.append(xrp)
-    xrp = locale.currency(xrp, grouping=True)
+    xrp = currency(xrp, grouping=True)
     list_paxg.append(paxg)
-    paxg = locale.currency(paxg, grouping=True)
+    paxg = currency(paxg, grouping=True)
     list_usdc.append(usdc)
-    usdc = locale.currency(usdc, grouping=True)
+    usdc = currency(usdc, grouping=True)
     
     # Monitoramento BTC
     if list_btc[-1] > list_btc[-2]:
@@ -141,5 +141,5 @@ while True:
     else:
         print("USDC:\t" + str(usdc) + "\t\t" +  obter_hora() + Fore.LIGHTYELLOW_EX +"\tEstável!"+Style.RESET_ALL + "  " +"-%")
 
-    print("======================================================================")
-    time.sleep(60)
+    print("="*80)
+    sleep(60)
