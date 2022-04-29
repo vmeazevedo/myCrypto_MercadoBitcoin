@@ -1,7 +1,7 @@
-import json
-import locale
-import time
-import requests
+from requests import get
+from locale import setlocale, LC_MONETARY, currency
+from json import loads
+from time import sleep
 from datetime import datetime
 from pyfiglet import figlet_format
 from rich import print
@@ -9,7 +9,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
 
-locale.setlocale(locale.LC_MONETARY, "pt_BR.UTF-8")
+setlocale(LC_MONETARY, "pt_BR.UTF-8")
 
 
 def logo(titulo):
@@ -25,8 +25,8 @@ def obter_hora():
 
 
 def buscar_dados(coin):
-    request = requests.get(f"https://www.mercadobitcoin.net/api/{coin}/ticker")
-    payload = json.loads(request.content)
+    request = get(f"https://www.mercadobitcoin.net/api/{coin}/ticker")
+    payload = loads(request.content)
     coin = payload['ticker']['last']
     return float(coin)
 
@@ -78,15 +78,15 @@ while True:
 
     # Armazenando os dados em listas para comparações
     list_btc.append(btc)
-    btc = locale.currency(btc, grouping=True)
+    btc = currency(btc, grouping=True)
     list_eth.append(eth)
-    eth = locale.currency(eth, grouping=True)
+    eth = currency(eth, grouping=True)
     list_xrp.append(xrp)
-    xrp = locale.currency(xrp, grouping=True)
+    xrp = currency(xrp, grouping=True)
     list_paxg.append(paxg)
-    paxg = locale.currency(paxg, grouping=True)
+    paxg = currency(paxg, grouping=True)
     list_usdc.append(usdc)
-    usdc = locale.currency(usdc, grouping=True)
+    usdc = currency(usdc, grouping=True)
 
     table = Table(title="")
     table.add_column("Criptomoeda", justify="center", no_wrap=True)
@@ -203,5 +203,5 @@ while True:
         console = Console()
         console.print(table)
 
-    print("==============================================================================")
-    time.sleep(60)
+    print("=" * 80)
+    sleep(60)
