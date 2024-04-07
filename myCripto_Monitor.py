@@ -58,4 +58,4 @@ while True:
 
     console.print(table)
     print("==============================================================================")
-    time.sleep(60)
+    time.sleep(30)
