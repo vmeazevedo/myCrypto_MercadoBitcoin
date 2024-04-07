@@ -1,6 +1,8 @@
 import unittest
-from unittest.mock import patch
-from myCripto_Monitor import monitorar_criptomoeda, criar_tabela
+from unittest.mock import patch, MagicMock
+from io import StringIO
+import sys
+from myCripto_Monitor import monitorar_criptomoeda, criar_tabela, main
 
 class TestMyCriptoMonitor(unittest.TestCase):
 
@@ -9,7 +11,7 @@ class TestMyCriptoMonitor(unittest.TestCase):
     @patch('myCripto_Monitor.calc_porc')
     def test_monitorar_criptomoeda(self, mock_calc_porc, mock_currency, mock_loop):
         # Configurando mocks
-        mock_loop.side_effect = [100, 110]  # Simula valores retornados pela função loop
+        mock_loop.return_value = 100  # Simula valores retornados pela função loop
         mock_currency.return_value = "R$100,00"  # Simula o valor retornado pela função locale.currency
         mock_calc_porc.return_value = "10%"  # Simula o valor retornado pela função calc_porc
 
@@ -28,6 +30,16 @@ class TestMyCriptoMonitor(unittest.TestCase):
         self.assertEqual(tabela.columns[2].name, "Data/Hora")
         self.assertEqual(tabela.columns[3].name, "Status")
         self.assertEqual(tabela.columns[4].name, "Porcentagem")
+
+    @patch('sys.stdout', new_callable=StringIO)
+    @patch('time.sleep', side_effect=KeyboardInterrupt)
+    def test_main(self, mock_sleep, mock_stdout):
+        # Simulando a interrupção do usuário (Ctrl+C)
+        with self.assertRaises(KeyboardInterrupt):
+            main()
+
+        # Verificando se a mensagem de encerramento foi impressa
+        self.assertIn("Programa encerrado pelo usuário.", mock_stdout.getvalue())
 
 if __name__ == '__main__':
     unittest.main()
