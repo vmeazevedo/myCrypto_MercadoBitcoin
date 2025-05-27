@@ -1,12 +1,12 @@
 import unittest
 from unittest.mock import patch, MagicMock
 from rich.table import Table
-from your_module import monitorar_criptomoeda, criar_tabela  # Ajuste 'your_module' para o nome do seu arquivo .py
+from myCripto_Monitor import monitorar_criptomoeda, criar_tabela  # Ajuste 'myCripto_Monitor' para o nome do seu arquivo .py
 from utils.alerta import verificar_alerta
 
 class TestMonitorarCriptomoeda(unittest.TestCase):
-    @patch("your_module.loop")
-    @patch("your_module.calc_porc")
+    @patch("myCripto_Monitor.loop")
+    @patch("myCripto_Monitor.calc_porc")
     @patch("locale.currency")
     def test_monitorar_criptomoeda_valor_maior(self, mock_currency, mock_calc_porc, mock_loop):
         mock_loop.return_value = 105.0
@@ -21,8 +21,8 @@ class TestMonitorarCriptomoeda(unittest.TestCase):
         self.assertEqual(style, "green")
         self.assertEqual(lista[-1], 105.0)
 
-    @patch("your_module.loop")
-    @patch("your_module.calc_porc")
+    @patch("myCripto_Monitor.loop")
+    @patch("myCripto_Monitor.calc_porc")
     @patch("locale.currency")
     def test_monitorar_criptomoeda_valor_menor(self, mock_currency, mock_calc_porc, mock_loop):
         mock_loop.return_value = 95.0
@@ -36,8 +36,8 @@ class TestMonitorarCriptomoeda(unittest.TestCase):
         self.assertEqual(porc, "-5.0%")
         self.assertEqual(lista[-1], 95.0)
 
-    @patch("your_module.loop")
-    @patch("your_module.calc_porc")
+    @patch("myCripto_Monitor.loop")
+    @patch("myCripto_Monitor.calc_porc")
     @patch("locale.currency")
     def test_monitorar_criptomoeda_valor_igual(self, mock_currency, mock_calc_porc, mock_loop):
         mock_loop.return_value = 100.0
@@ -51,7 +51,7 @@ class TestMonitorarCriptomoeda(unittest.TestCase):
         self.assertEqual(porc, "0%")
         self.assertEqual(lista[-1], 100.0)
 
-    @patch("your_module.loop", side_effect=Exception("Erro na requisição"))
+    @patch("myCripto_Monitor.loop", side_effect=Exception("Erro na requisição"))
     def test_monitorar_criptomoeda_erro(self, mock_loop):
         lista = [100.0]
         valor, porc, style = monitorar_criptomoeda("btc", lista)
