@@ -8,9 +8,13 @@ from utils.horas import obter_hora
 from utils.logo import logo
 from utils.porcentagem import calc_porc
 from utils.requisição import loop
+from utils.alerta import verificar_alerta 
 
 # Configuração do sistema para R$
 locale.setlocale(locale.LC_MONETARY, "pt_BR.UTF-8")
+
+# Limite de variação percentual para alerta
+LIMITE_ALERTA = 0.01  # em %
 
 def monitorar_criptomoeda(nome, lista):
     try:
@@ -72,11 +76,15 @@ def main():
                 valor, porcentagem, style = monitorar_criptomoeda(nome.lower(), lista)
                 table.add_row(nome, str(valor), data_hora, "⬆" if style == "green" else "⬇" if style == "red" else "=", porcentagem, style=style)
 
+                # Checagem de alerta
+                if verificar_alerta(lista, LIMITE_ALERTA):
+                    print(f"[bold yellow]⚠ ALERTA: {nome} variou mais de {LIMITE_ALERTA}%![/bold yellow]")
+
             # Imprime a tabela
             console.print(table)
 
             # Aguarda um intervalo de tempo antes de atualizar novamente
-            time.sleep(30)
+            time.sleep(10)
 
         except KeyboardInterrupt:
             # Em caso de interrupção pelo usuário (Ctrl+C), encerra o programa
